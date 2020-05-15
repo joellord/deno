@@ -47,3 +47,20 @@ When the container is started, it will automatically look into the /deno-entrypo
 ```
 docker run -v $(pwd):/deno-entrypoint joellord/deno
 ```
+
+## Create your own Dockerfile
+You can also create your own images to deploy them on a Kubernetes cluster. To do so, you can start with the same base image and copy over your Deno files. Makes sure to expose your ports and use the appropriate flags in your CMD line.
+
+Create the Dockerfile
+```
+FROM joellord/deno:1.0.0
+COPY ./*.ts /app/
+EXPOSE 8000
+CMD ["deno", "run", "--allow-net", "/app/server.ts"]
+```
+
+Build and run the image
+```
+docker built -t mydenoserver .
+docker run -p 8000:8000 mydenoserver
+```
