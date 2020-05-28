@@ -18,7 +18,7 @@ RUN chmod a+rwx $HOME
 
 USER 1000:1000
 
-RUN curl -fsSL https://deno.land/x/install/install.sh | sh -s v1.0.1
+RUN curl -fsSL https://deno.land/x/install/install.sh | sh -s v1.0.2
 
 ENV DENO_INSTALL /$HOME/.deno
 ENV PATH $DENO_INSTALL/bin:$PATH
